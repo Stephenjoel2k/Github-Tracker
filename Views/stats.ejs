@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<title>Stats</title>
+		<link rel="stylesheet" href="/css/stats.css" type="text/css">
+		<link rel="stylesheet" href="/css/main.css" type="text/css">
+		<link rel="stylesheet" href="/css/util.css" type="text/css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+		<style>
+			 .login100-form-btn{
+				 width: 20px;
+				 background-color: #ffd045;
+			}
+       .two{
+				top: 60px;
+				right: 150px;
+				position: absolute;
+			}
+
+			 .one{
+				top: 60px;
+				right: 70px;
+				position: absolute;
+			}
+
+		</style>
+	</head>
+	<body>
+		<h1>LEADERBOARD</h1>
+
+		<form class="login100-form validate-form" method="get" action="/">
+			<div class="container-login100-form-btn">
+				<button class="login100-form-btn two">
+					<a href="/"><img src="https://img.icons8.com/color/48/000000/edit.png" height="30px" ></a>
+				</button>
+			</div>
+		</form>
+
+		<form class="login100-form validate-form" method="get" action="/stats">
+			<div class="container-login100-form-btn">
+		<button class="login100-form-btn one">
+			<a href="/"><img src="https://img.icons8.com/ios/50/000000/available-updates.png" height="30px" ></a>
+		</button>
+	</div>
+</form>
+
+		<table>
+   <tr>
+		 <th></th>
+		 <th>Login</th>
+		 <th>Commits</th>
+		 <th>Commit(C)</th>
+		 <th>PR</th>
+		 <th>PR(C)</th>
+		 <th>Issue(C)</th>
+		 <th>FileChanges</th>
+		 <th>Code Added</th>
+		 <th>Code Deleted</th>
+		 <th>Total</th>
+   </tr>
+
+
+   <% for (var i = 0; i < response.length; i++) { %>
+    <tr>
+      <td> <img src="<%= response[i].member.avatar_url %>" height="50px" width="50px" align="middle"></td>
+			<td><%= response[i].member.login %></td>
+      <td><%=  response[i].events.commits %></td>
+			<td><%=  response[i].events.commit_comments %></td>
+			<td><%=  response[i].events.pr %></td>
+			<td><%=  response[i].events.prrc %></td>
+			<td><%=  response[i].events.issue_comments %></td>
+			<td><%=  response[i].stats.file_changes %></td>
+      <td><%=  response[i].stats.add %></td>
+			<td><%=  response[i].stats.del %></td>
+			<td><%=  response[i].stats.total %></td>
+    </tr>
+   <% } %>
+
+	</table>
+	</body>
+</html>
