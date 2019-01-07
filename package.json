@@ -24,6 +24,7 @@
     "test": "jest",
     "start": "node server.js"
   },
-  "author": "",
+  "proxy": "https://get-github-stats.herokuapp.com/",
+  "author": "Stephen Janagarajan",
   "license": "ISC"
 }
