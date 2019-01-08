@@ -30,15 +30,16 @@ const ParsePR = async (endpoint, token) => {
   let data = [];
   await asyncForEach(endpoint, async url => {
     const response = await axios.get(url, key);
-    if (!response.data.user.login) return
-    let name = response.data.user.login || 0;
-    let commits = response.data.commits || 0;
-    let add = response.data.additions || 0;
-    let del = response.data.deletions || 0;
-    let total = add + del;
-    let changed_files = response.data.changed_files || 0;
-    const PD = { name, add, del, total, commits, changed_files };
-    data.push(PD);
+    if (response.data.user.login) {
+      let name = response.data.user.login || 0;
+      let commits = response.data.commits || 0;
+      let add = response.data.additions || 0;
+      let del = response.data.deletions || 0;
+      let total = add + del;
+      let changed_files = response.data.changed_files || 0;
+      const PD = { name, add, del, total, commits, changed_files };
+      data.push(PD);
+    }
   });
   return data;
 };
@@ -58,15 +59,16 @@ const ParseC = async (endpoint, token) => {
   const data = [];
   await asyncForEach(endpoint, async url => {
     const response = await axios.get(url, key);
-    if (!response.data.author.login) return
-    let name = response.data.author.login || 0;
-    let stats = response.data.stats;
-    let add = stats.additions || 0;
-    let del = stats.deletions || 0;
-    let total = stats.total || 0;
-    let commits = 1;
-    const CD = { name, add, del, total, commits };
-    data.push(CD);
+    if (response.data.author.login) {
+      let name = response.data.author.login || 0;
+      let stats = response.data.stats;
+      let add = stats.additions || 0;
+      let del = stats.deletions || 0;
+      let total = stats.total || 0;
+      let commits = 1;
+      const CD = { name, add, del, total, commits };
+      data.push(CD);
+    }
   });
   return data;
 };
